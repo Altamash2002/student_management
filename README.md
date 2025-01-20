@@ -60,6 +60,15 @@ Schema::create('students', function (Blueprint $table) {
 });
 ```
 
+OR Create  `Students` table manually in the mysql Database with the following fields
+```php
+roll_no (int, primary key)
+name (varchar 255)
+city (varchar 255)
+detail (text)
+```
+
+
 ### 7. Seed the Database (Optional)
 
 If the project includes seeders for initial data, you can run the following command:
