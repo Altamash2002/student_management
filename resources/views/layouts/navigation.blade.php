@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                    <img src="https://static.vecteezy.com/system/resources/previews/000/379/680/original/user-management-vector-icon.jpg" alt="User Management Logo" class="w-24 h-24 mx-auto rounded-full shadow-md" width="50">
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/379/680/original/user-management-vector-icon.jpg" alt="User Management Logo" class="w-12 h-12 mx-auto rounded-full shadow-md" width="50">
                     </a>
                 </div>
 
