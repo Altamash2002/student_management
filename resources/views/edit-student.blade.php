@@ -35,6 +35,7 @@
                             placeholder="Enter Student's Roll Number" 
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-800 focus:border-gray-800"
                             value="{{@$student->roll_no}}"
+                            readonly
                         >
                         @error('roll_no')
                             <div style="color: red;">{{$message}}</div>

@@ -23,6 +23,10 @@ class StudentController extends Controller
             'detail' => 'required | min:15'
         ]);
 
+        if (Student::where('roll_no', $req->roll_no)->exists()) {
+            return redirect('add-student')->with('msg', 'Roll number already exists!');
+        }
+
         $student = new Student();
         $student->roll_no = $req->roll_no;
         $student->name = $req->name;
@@ -33,7 +37,7 @@ class StudentController extends Controller
             return redirect('dashboard')->with('msg','New Student Added Successfully');
         }
         else{
-            return redirect('add-user')->with('msg','An Error Occured');
+            return redirect('add-student')->with('msg','An Error Occured');
         }
     }
 
@@ -59,7 +63,6 @@ class StudentController extends Controller
         ]);
 
         $student = Student::where('roll_no',$roll_no)->first();
-        $student->roll_no = $req->roll_no;
         $student->name = $req->name;
         $student->city = $req->city;
         $student->detail = $req->detail;
@@ -67,7 +70,7 @@ class StudentController extends Controller
             return redirect('dashboard')->with('msg','Student '.$roll_no.' Updated Successfully');
         }
         else{
-            echo 'An Error Occured';
+            return redirect()->action([StudentController::class, 'edit'])->with('msg', 'An error occured!');
         }
     }
 }
