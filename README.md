@@ -76,7 +76,14 @@ If the project includes seeders for initial data, you can run the following comm
 php artisan db:seed
 ```
 
-### 8. Serve the Application
+### 8. Serve the Application I
+
+Run the Laravel development server:
+```bash
+npm run dev
+```
+
+### 8. Serve the Application II
 
 Run the Laravel development server:
 ```bash
