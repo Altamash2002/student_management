@@ -1,0 +1,3 @@
+admin -> click to go
+total_price default value
+image not working

@@ -3,14 +3,14 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Student Management</title>
+        <title>Hotel Booking System</title>
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body class="bg-gray-100 text-gray-100 min-h-screen flex items-center justify-center">
         <div class="max-w-lg w-full p-6 bg-gray-800 shadow-lg rounded-lg">
             <div class="text-center">
                 <img src="https://static.vecteezy.com/system/resources/previews/000/379/680/original/user-management-vector-icon.jpg" alt="User Management Logo" class="w-24 h-24 mx-auto mb-4 rounded-full shadow-md">
-                <h1 class="text-2xl font-bold text-white">Welcome to Student Management</h1>
+                <h1 class="text-2xl font-bold text-white">Welcome to Hotel Booking System</h1>
                 <p class="text-gray-400 mt-2">Manage your users with ease and simplicity!</p>
             </div>
 
@@ -24,7 +24,7 @@
             </div>
 
             <div class="mt-8 text-center text-gray-400 text-sm">
-                <p>&copy; {{ date('Y') }} Student Management. All rights reserved.</p>
+                <p>&copy; {{ date('Y') }} Hotel Booking system. All rights reserved.</p>
             </div>
         </div>
     </body>
