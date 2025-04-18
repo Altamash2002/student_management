@@ -55,13 +55,6 @@ php artisan migrate
 ```
 
 
-### 7. Seed the Database (Optional)
-
-If the project includes seeders for initial data, you can run the following command:
-```bash
-php artisan db:seed
-```
-
 ### 8. Serve the Application I
 
 Run the Laravel development server:
