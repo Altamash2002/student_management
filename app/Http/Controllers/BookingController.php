@@ -30,20 +30,42 @@ class BookingController extends Controller
 
         $room = Room::findOrFail($request->room_id);
 
-        $days = now()->parse($request->check_in)->diffInDays($request->check_out);
+        $checkIn = $request->check_in;
+        $checkOut = $request->check_out;
+
+        // ❗ Check for existing confirmed bookings that overlap
+        $overlap = Booking::where('room_id', $room->id)
+            ->where('status', 'confirmed') // Only confirmed bookings block others
+            ->where(function ($query) use ($checkIn, $checkOut) {
+                $query->whereBetween('check_in', [$checkIn, $checkOut])
+                    ->orWhereBetween('check_out', [$checkIn, $checkOut])
+                    ->orWhere(function ($q) use ($checkIn, $checkOut) {
+                        $q->where('check_in', '<=', $checkIn)
+                            ->where('check_out', '>=', $checkOut);
+                    });
+            })
+            ->exists();
+
+        if ($overlap) {
+            return back()->with('error', 'This room is already booked for the selected dates.');
+        }
+
+        // ✅ No overlap → proceed with booking
+        $days = now()->parse($checkIn)->diffInDays($checkOut);
         $total = $room->price * $days;
 
         Booking::create([
             'user_id' => Auth::id(),
             'room_id' => $room->id,
-            'check_in' => $request->check_in,
-            'check_out' => $request->check_out,
+            'check_in' => $checkIn,
+            'check_out' => $checkOut,
             'total_price' => $total,
-            'status' => 'pending',
+            'status' => 'confirmed',
         ]);
 
         return redirect()->route('bookings.index')->with('success', 'Room booked!');
     }
+
 
     public function destroy(Booking $booking)
     {

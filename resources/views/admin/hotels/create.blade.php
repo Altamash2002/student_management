@@ -11,7 +11,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('admin.hotels.store') }}" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <form action="{{ route('admin.hotels.store') }}" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" enctype="multipart/form-data">
                 @csrf
 
                 <div class="mb-4">
@@ -35,6 +35,14 @@
                     <textarea name="description" id="description" rows="4" class="w-full border rounded px-3 py-2"></textarea>
                     @error('description')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="image">Hotel Image</label>
+                    <input type="file" name="image" id="image" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer">
+                    @error('image')
+                        <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
                     @enderror
                 </div>
 

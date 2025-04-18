@@ -19,6 +19,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/login-signup', function () {
+    if (Auth::check()) {
+        return redirect()->route('dashboard');
+    }
+    return view('dashboard');
+});
+
+
+
 Route::get('/dashboard', function () {
     if (Auth::user()->is_admin) {
         return redirect()->route('admin.dashboard');
@@ -46,6 +55,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/book-room', [BookingController::class, 'store'])->name('bookings.store');
 
     Route::delete('/bookings/{booking}', [BookingController::class, 'destroy'])->name('bookings.destroy');
+
+    // Hotel listing and room listing for users
+    Route::get('/hotels', [UserController::class, 'hotels'])->name('user.hotels');
+    Route::get('/hotels/{hotel}', [UserController::class, 'showHotel'])->name('user.hotels.show');
+
 
 });
 

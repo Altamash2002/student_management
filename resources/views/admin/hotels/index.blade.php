@@ -16,6 +16,7 @@
                     <thead>
                         <tr class="bg-gray-100 text-left">
                             <th class="px-4 py-2">#</th>
+                            <th class="px-4 py-2">Image</th>
                             <th class="px-4 py-2">Hotel Name</th>
                             <th class="px-4 py-2">Location</th>
                             <th class="px-4 py-2">Description</th>
@@ -26,6 +27,13 @@
                         @forelse ($hotels as $hotel)
                             <tr class="border-b">
                                 <td class="px-4 py-2">{{ $loop->iteration }}</td>
+                                <td class="px-4 py-2">
+                                    @if ($hotel->image)
+                                        <img src="{{ asset('storage/' . $hotel->image) }}" alt="Hotel" class="w-16 h-12 object-cover rounded">
+                                    @else
+                                        <span class="text-gray-400 text-sm">No Image</span>
+                                    @endif
+                                </td>
                                 <td class="px-4 py-2">{{ $hotel->name }}</td>
                                 <td class="px-4 py-2">{{ $hotel->location }}</td>
                                 <td class="px-4 py-2 text-sm text-gray-700">{{ $hotel->description }}</td>

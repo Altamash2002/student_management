@@ -17,7 +17,6 @@ class BookingController extends Controller
     {
         if ($booking->status === 'pending') {
             $booking->update(['status' => 'confirmed']);
-            $booking->room->update(['status' => 'booked']);
 
             return redirect()->back()->with('success', 'Booking confirmed.');
         }
