@@ -42,30 +42,16 @@ Run the following command to generate the application key:
 php artisan key:generate
 ```
 
+### 5.I Create Database in phpmyAdmin or Mysql
+
+create database as same name present in .env file
+
+
 ### 6. Run Migrations
 
 Run the migrations to create the necessary database tables:
 ```bash
 php artisan migrate
-```
-
-If you need to create the `students` table manually for this project, ensure your migration file includes the following schema:
-```php
-Schema::create('students', function (Blueprint $table) {
-    $table->string('roll_no')->primary();
-    $table->string('name');
-    $table->string('city');
-    $table->text('detail')->nullable();
-    $table->timestamps();
-});
-```
-
-OR Create  `Students` table manually in the mysql Database with the following fields 
-```php
-roll_no (int, primary key)
-name (varchar 255)
-city (varchar 255)
-detail (text)
 ```
 
 
