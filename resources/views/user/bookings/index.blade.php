@@ -5,6 +5,11 @@
 
     <div class="py-6">
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+            @if(session('success'))
+                <div class="mb-4 text-green-600">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="overflow-x-auto bg-white shadow-md rounded p-4">
                 <table class="min-w-full table-auto">
                     <thead>
