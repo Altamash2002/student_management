@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\IsAdmin;
+use App\Http\Controllers\ReviewController;
 
 
 Route::get('/', function () {
@@ -26,8 +27,6 @@ Route::get('/login-signup', function () {
     return view('dashboard');
 });
 
-
-
 Route::get('/dashboard', function () {
     if (Auth::user()->is_admin) {
         return redirect()->route('admin.dashboard');
@@ -43,8 +42,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
-
+Route::get('/reviews', [ReviewController::class, 'index'])->middleware('auth')->name('reviews');
+Route::post('/reviews', [ReviewController::class, 'store'])->middleware('auth')->name('reviews');
 
 // User Dashboard
 Route::middleware(['auth'])->group(function () {
@@ -60,9 +59,18 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/hotels', [UserController::class, 'hotels'])->name('user.hotels');
     Route::get('/hotels/{hotel}', [UserController::class, 'showHotel'])->name('user.hotels.show');
 
+    // route for aboute us page
+    Route::get('/about-us', function () {
+        return view('about');
+    })->name('about');
+
+    Route::get('/places', function () {
+        return view('places');
+    })->name('places');
 
 });
 
+require __DIR__.'/auth.php';
 // Admin Dashboard + Management
 Route::middleware(['auth', IsAdmin::class])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
